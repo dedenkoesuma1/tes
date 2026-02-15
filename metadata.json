@@ -1,0 +1,8 @@
+{
+  "name": "PT Terra Aditama Marcapada",
+  "description": "Professional technical consultancy website featuring integrated engineering solutions, survey mapping, and strategic urban planning powered by AI.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
