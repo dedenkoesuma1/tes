@@ -80,7 +80,12 @@ const AIConsultant: React.FC = () => {
               <div ref={scrollRef} className="flex-1 overflow-y-auto p-8 space-y-8 scroll-smooth">
                 {messages.map((msg, i) => (
                   <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`flex max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'} items-start gap-4`}>
+                    <div className={`flex max-w-[90%] ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'} items-start gap-4`}>
+                      {msg.role === 'assistant' && (
+                        <div className="w-10 h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center shrink-0 mt-1 shadow-sm">
+                          <Bot className="text-brand-gold w-5 h-5" />
+                        </div>
+                      )}
                       <div className={`p-6 rounded-[2rem] text-sm leading-relaxed ${
                         msg.role === 'user' 
                           ? 'bg-brand-gold text-white rounded-tr-none shadow-lg' 
@@ -93,9 +98,14 @@ const AIConsultant: React.FC = () => {
                 ))}
                 {isLoading && (
                   <div className="flex justify-start">
-                    <div className="bg-white/5 border border-white/10 p-5 rounded-2xl flex items-center space-x-3">
-                      <Loader2 className="w-4 h-4 animate-spin text-brand-gold" />
-                      <span className="text-[10px] text-white/40 font-black uppercase tracking-widest">Synthesizing...</span>
+                    <div className="flex items-start gap-4 max-w-[90%]">
+                      <div className="w-10 h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center shrink-0 mt-1 shadow-sm">
+                        <Bot className="text-brand-gold w-5 h-5 animate-pulse" />
+                      </div>
+                      <div className="bg-white/5 border border-white/10 p-5 rounded-2xl flex items-center space-x-3">
+                        <Loader2 className="w-4 h-4 animate-spin text-brand-gold" />
+                        <span className="text-[10px] text-white/40 font-black uppercase tracking-widest">Synthesizing...</span>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -105,25 +115,4 @@ const AIConsultant: React.FC = () => {
                 <input 
                   type="text" 
                   value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Tulis pesan Anda..."
-                  className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-brand-gold transition-all placeholder:text-white/20"
-                  disabled={isLoading}
-                />
-                <button 
-                  type="submit"
-                  disabled={isLoading || !input.trim()}
-                  className="w-14 h-14 bg-brand-gold hover:bg-brand-gold-light disabled:opacity-50 text-white rounded-2xl flex items-center justify-center transition-all shadow-xl shadow-brand-gold/20"
-                >
-                  <Send size={20} />
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default AIConsultant;
+                  onChange={(e
